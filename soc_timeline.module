@@ -7,7 +7,8 @@
 
 define('SOCTL_name', 'SoC Timeline ');
 define('SOCTL_desc', 'Produces JavaScript time line using JQueryUI effects with trigger text [timeline:#divID]');
-define('SOCTL_BTRSLD_FILE', 'Better_Slider.js');
+define('SOCTL_BTRSLD_FILE', 'SOCSlider.js');
+define('SOCTL_BTRSLD_CSS', 'timeline-style.css');
 
 
 
@@ -42,26 +43,36 @@ function _soc_timeline_process($text, $filter, $format, $langcode, $cache, $cach
   $replace_original = $matches[0];
   $first_match      = $matches[1];
 
-  // no match move on
+  /*
+  If no match is found, stop processing and return unaltered text back to the
+  caller.
+  */
   if (! isset($first_match[0]) ){
-    drupal_set_message('no match');
     return $text;
   }
 
-  // settings to pass to Javascript through Drupal.settings
+  /*
+  Settings to pass to Javascript through Drupal.settings
+  */
   $settings = array(
-    'duration' => 1500,
-    'prev_button' => '#issues #prev',
-    'next_button' => '#issues #next'
-  );
+    'duration' => '1500',
+    'prev_button' => ' #prev',
+    'next_button' => ' #next'
+    );
   drupal_add_js(array('soc_timeline'=>$settings), 'setting');
 
   // Inject javascript files
   drupal_add_js('https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js', 'external');
   drupal_add_js(drupal_get_path('module', 'soc_timeline') . '/' . SOCTL_BTRSLD_FILE, 'file');
+  drupal_add_js("jQuery(function() { socslider = new SOCSlider('$first_match[0]', '#date' ); });", 'inline');
 
+  // CSS file
+  drupal_add_css(drupal_get_path('module', 'soc_timeline') . '/' . SOCTL_BTRSLD_CSS, array('group' => CSS_DEFAULT, 'type' => 'file'));
 
-  return $text;
+  /*
+  Remove orginal text from the blob-o-text and return back to caller.
+  */
+  return str_replace($replace_original, '', $text);
 }
 
 
@@ -70,23 +81,3 @@ function _soc_timeline_filter_tips($filter, $format, $long)  {
 }
 
 
-/**
- * Implements hook_menu().
- */
-/*
-function soc_timeline_menu() {
-  $items['example'] = array(
-    'title' => 'Example Page',
-    'page callback' => 'example_page',
-    'access arguments' => array('access content'),
-    'type' => MENU_SUGGESTED_ITEM,
-  );
-  $items['example/feed'] = array(
-    'title' => 'Example RSS feed',
-    'page callback' => 'example_feed',
-    'access arguments' => array('access content'),
-    'type' => MENU_CALLBACK,
-  );
-
-  return $items;
-}*/
