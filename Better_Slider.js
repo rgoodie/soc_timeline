@@ -16,14 +16,22 @@ function BetterSlider (container, member_prefix) {
 	collection with a small name. Perhaps I should append 'rama' to the end
 	of variable names. This would just be fun to say if not to type. Think
 	self.o.first-a-rama or self.of.index-a-rama. I'm over thinking this.
+
+	Also, bring in as much from the Drupal module as possible through the
+	Drupal.settings name spaceing.
 	*/
 	self.o = {
 		container: 			container + ' ',
 		memberid_prefix: 	member_prefix,
-		members:  			container + ' li',
+		members:  			container + ' #issues li',
 		index: 1,
 		first: 1,
-		count: -1
+		count: -1,
+		direction: '',
+		duration: 			Drupal.settings.soc_timeline.duration,
+		prev_button: 		Drupal.settings.soc_timeline.prev_button,
+    	next_button: 		Durpal.settings.soc_timeline.next_button
+
 	};
 
 	/*
@@ -76,9 +84,12 @@ function BetterSlider (container, member_prefix) {
 
 		self.o.index = self.checkIndex(n );
 
+		console.log('New index:' + self.o.index);
+
 		self.hideall();
 
-		jQuery(self.o.container + self.o.memberid_prefix + self.o.index).show('slide', { direction: self.o.direction });
+		console.log('selector to show: ' + self.o.container + self.o.memberid_prefix + self.o.index);
+		jQuery(' ' + self.o.container + self.o.memberid_prefix + self.o.index).show('slide', { direction: self.o.direction }, self.o.duration);
 	}
 
 

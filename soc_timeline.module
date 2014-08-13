@@ -5,8 +5,9 @@
  * TODO: Enter file description here.
  */
 
-define('SOCTL_name', 'soc_timeline_filter');
+define('SOCTL_name', 'SoC Timeline ');
 define('SOCTL_desc', 'Produces JavaScript time line using JQueryUI effects with trigger text [timeline:#divID]');
+define('SOCTL_BTRSLD_FILE', 'Better_Slider.js');
 
 
 
@@ -14,13 +15,14 @@ define('SOCTL_desc', 'Produces JavaScript time line using JQueryUI effects with 
  * Implements hook_filter_info().
  */
 function soc_timeline_filter_info() {
-  $filters[SOCTL_name] = array(
+  $filters['soc_timeline_filter'] = array(
     'title' => t(SOCTL_name),
     'description' => t(SOCTL_desc),
     'process callback' => '_soc_timeline_process',
+    'tips callback' => '_soc_timeline_filter_tips',
 
 
-  );
+    );
 
   return $filters;
 }
@@ -28,9 +30,12 @@ function soc_timeline_filter_info() {
 
 
 /*
-
+See if there is a match to [timeline:#divID]. If so, inject the base javascript
+file into Drupal's boot strap process.
 */
 function _soc_timeline_process($text, $filter, $format, $langcode, $cache, $cache_id) {
+
+
   $re = "/\\[timeline:(#[A-Za-z]+)]/";
   preg_match_all($re, $text, $matches);
 
@@ -39,15 +44,30 @@ function _soc_timeline_process($text, $filter, $format, $langcode, $cache, $cach
 
   // no match move on
   if (! isset($first_match[0]) ){
+    drupal_set_message('no match');
     return $text;
   }
 
+  // settings to pass to Javascript through Drupal.settings
+  $settings = array(
+    'duration' => 1500,
+    'prev_button' => '#issues #prev',
+    'next_button' => '#issues #next'
+  );
+  drupal_add_js(array('soc_timeline'=>$settings), 'setting');
+
+  // Inject javascript files
+  drupal_add_js('https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js', 'external');
+  drupal_add_js(drupal_get_path('module', 'soc_timeline') . '/' . SOCTL_BTRSLD_FILE, 'file');
 
 
+  return $text;
 }
 
 
-
+function _soc_timeline_filter_tips($filter, $format, $long)  {
+  return SOCTL_desc ;
+}
 
 
 /**
