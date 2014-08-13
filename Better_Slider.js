@@ -1,5 +1,5 @@
 
-function BetterSlider () {
+function BetterSlider (container, member_prefix) {
 
 
 	/*
@@ -18,22 +18,34 @@ function BetterSlider () {
 	self.o.first-a-rama or self.of.index-a-rama. I'm over thinking this.
 	*/
 	self.o = {
-		container: 			'#issues ',
-		memberid_prefix: 	'#date',
-		members:  			'#issues li ',
+		container: 			container + ' ',
+		memberid_prefix: 	member_prefix,
+		members:  			container + ' li',
 		index: 1,
 		first: 1,
 		count: -1
 	};
 
+	/*
+	A count of just how many members we have
+	*/
 	self.o.count = jQuery(self.o.members ).length;
 
 
-
+	/*
+	Hides all. Duh.
+	*/
 	self.hideall =  function() {
 		jQuery(self.o.members ).hide();
 	}
 
+
+	/*
+	Checks to ensure that the number coming in (n) is between 1 and the count
+	of all member items. It also checks that it is a number using jQuery isNumeric
+	function. That comes in handy, eh! No real errors are thrown. Rather it just
+	returns the boundaries (self.o.first or self.o.count).
+	*/
 	self.checkIndex = function(n) {
 		if (n < self.o.first) {
 			return self.o.first;
@@ -46,6 +58,14 @@ function BetterSlider () {
 		}
 	}
 
+
+	/*
+	Moves Index to n. Also decides if the show slide should come in from the
+	right or left. Basically, if the new index (n) is greater than the previous
+	one (self.o.index), come in from the right. If not, default to come in from
+	the left. After that is decided, change to new index position and execute the
+	hide()s and the show().
+	*/
 	self.moveToIndex = function(n) {
 
 		if (n > self.o.index ) {
@@ -56,10 +76,10 @@ function BetterSlider () {
 
 		self.o.index = self.checkIndex(n );
 
-	}
-
-	self.process = function() {
 		self.hideall();
+
 		jQuery(self.o.container + self.o.memberid_prefix + self.o.index).show('slide', { direction: self.o.direction });
 	}
+
+
 }
