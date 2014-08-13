@@ -3,10 +3,17 @@ function BetterSlider () {
 
 	self = this;
 
+
+	/*
+	o for options. For some reason I wanted to keep these in a nicely packed
+	collection with a small name. Perhaps I should append 'rama' to the end
+	of variable names. This would just be fun to say if not to type. Think
+	self.o.first-a-rama or self.of.index-a-rama. I'm over thinking this.
+	*/
 	self.o = {
 		container: 			'#issues ',
 		memberid_prefix: 	'#date',
-		members:  			'#issues li ', 		
+		members:  			'#issues li ',
 		index: 1,
 		first: 1,
 		count: -1
@@ -27,7 +34,7 @@ function BetterSlider () {
 			return self.o.count;
 		} else if (! jQuery.isNumeric(n) ) {
 			return self.o.first;
-		} else { 
+		} else {
 			return n;
 		}
 	}
