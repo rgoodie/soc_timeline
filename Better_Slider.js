@@ -1,6 +1,13 @@
 
 function BetterSlider () {
 
+
+	/*
+	To help me later with deeply nested closures. Self will always refer to the
+	Object (BetterSlider) level. So Self to me is just more semantically correct
+	and relieves me of the mental hurdle of what 'this' may be referring to. Just
+	trying to save my little brain some clock cycles.
+	*/
 	self = this;
 
 
