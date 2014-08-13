@@ -1,0 +1,114 @@
+
+	#timeline {
+		width: 700px;
+		height: 500px;
+		overflow: hidden;
+		margin: 10px auto 20px auto;
+		position: relative;
+		background: url('/images/common/dot.gif') left 45px repeat-x;
+	}
+
+		#dates {
+			width: 700px;
+			height: 60px;
+			overflow: hidden;
+		}
+			#dates li {
+				list-style: none;
+				float: left;
+				width: 100px;
+				height: 50px;
+				font-size: 1.2em;
+				text-align: center;
+				background: url('/images/common/biggerdot.png') center bottom no-repeat;
+			}
+				#dates a {
+					line-height: 38px;
+					padding-bottom: 10px;
+				}
+				#dates .selected {
+			        font-size: 1.3em;
+				}
+
+		#issues {
+			width: 700px;
+			he/ight: 350px;
+			overflow: hidden;
+		}
+
+			#issues li {
+				width: 650px;
+				min-height: 450px;
+				list-style: none;
+				float: left;
+
+			}
+				#issues li p {
+
+					margin-right: 40px;
+					margin-left:20px;
+
+				}
+				#issues li.selected img {
+
+				}
+				#issues li img {
+
+					margin: 10px 10px 10px 40px;
+					background: transparent;
+
+				}
+				#issues li h1,h2,h3 {
+
+					font-size: 1.2em;
+					margin: 20px 0;
+					line-height:1.5em;
+
+				}
+
+
+		#grad_left,
+		#grad_right {
+			width: 100px;
+			height: 350px;
+			position: absolute;
+			top: 0;
+		}
+			#grad_left {
+		        left: 0;
+
+			}
+			#grad_right {
+		        right: 0;
+
+			}
+
+		#next,
+		#prev {
+			position: absolute;
+			top: 0;
+			font-size: 70px;
+			top: 170px;
+			width: 22px;
+			height: 38px;
+			background-position: 0 0;
+			background-repeat: no-repeat;
+			text-indent: -9999px;
+			overflow: hidden;
+		}
+			#next:hover,
+			#prev:hover {
+				background-position: 0 -76px;
+			}
+			#next {
+				right: 0;
+				background-image: url('/images/common/next.png');
+			}
+			#prev {
+				left: 0;
+				background-image: url('/images/common/prev.png');
+			}
+				#next.disabled,
+				#prev.disabled {
+					opacity: 0.2;
+				}
