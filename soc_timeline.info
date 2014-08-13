@@ -1,0 +1,3 @@
+name = SoC Timeline
+description = Input filter to produce a time line with trigger text [timeline:#divID]
+core = 7.x

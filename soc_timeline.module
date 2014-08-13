@@ -1,0 +1,65 @@
+<?php
+
+/**
+ * @file soc_timeline.module
+ * TODO: Enter file description here.
+ */
+
+defune('SOCTL_name', 'soc_timeline_filter');
+
+/**
+ * Implements hook_menu().
+ */
+/*
+function soc_timeline_menu() {
+  $items['example'] = array(
+    'title' => 'Example Page',
+    'page callback' => 'example_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_SUGGESTED_ITEM,
+  );
+  $items['example/feed'] = array(
+    'title' => 'Example RSS feed',
+    'page callback' => 'example_feed',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}*/
+
+/**
+ * Implements hook_filter_info().
+ */
+function soc_timeline_filter_info() {
+  $filters[SOCTL_name] = array(
+    'title' => t('Limit allowed HTML tags'),
+    'description' => t('Allows you to restrict the HTML tags the user can use. It will also remove harmful content such as JavaScript events, JavaScript URLs and CSS styles from those tags that are not removed.'),
+    'process callback' => '_soc_timeline_process',
+
+
+  );
+
+  return $filters;
+}
+
+
+
+/*
+
+*/
+function _soc_timeline_process($text, $filter, $format, $langcode, $cache, $cache_id) {
+  $re = "/\\[timeline:(#[A-Za-z]+)]/";
+  preg_match_all($re, $text, $matches);
+
+  $replace_original = $matches[0];
+  $first_match      = $matches[1];
+
+  // no match move on
+  if (! isset($first_match[0]) {
+    return $text;
+  }
+
+
+
+}
