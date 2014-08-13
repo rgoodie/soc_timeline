@@ -1,0 +1,1 @@
+Style sheet adapted from the wonderful work jQuery.timelinr project
