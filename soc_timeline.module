@@ -38,7 +38,7 @@ function _soc_timeline_process($text, $filter, $format, $langcode, $cache, $cach
   $first_match      = $matches[1];
 
   // no match move on
-  if (! isset($first_match[0]) {
+  if (! isset($first_match[0]) ){
     return $text;
   }
 
