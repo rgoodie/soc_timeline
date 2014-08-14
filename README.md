@@ -10,10 +10,13 @@ How
 ---
 Install the module. Activate the Input Filter. Drop in HTML in the prescribed format (as denoted in the parent project's readme page: https://github.com/juanbrujo/jQuery-Timelinr). Enter `[timeline:{#divID}]` in the body. 
 
+What if I just want to embed the original library?
+---
+Go ahead. The original project is a great idea. But for my specific situation, I wanted to bundle this up into a D7 module and found I had to retool the core Javascript logic.  
+
 Assumptions, gotchas, and requirements
 -----------
-- Drupal 7.x
-- jQueryUI is called from google's cdn
+You'll need Drupal 7.x. jQueryUI is called from google's cdn. 
 
 Standing on big sholders
 ------------------------
