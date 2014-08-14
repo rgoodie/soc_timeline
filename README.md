@@ -8,7 +8,7 @@ In Drupal, there are modules that do everything. But sometimes content creators 
 
 How
 ---
-Install the module. Activate the Input Filter. Drop in HTML in the prescribed format (as denoted in the parent project's readme page*). Enter `[timeline:{#divID}]` in the body. 
+Install the module. Activate the Input Filter. Drop in HTML in the prescribed format (as denoted in the parent project's readme page: https://github.com/juanbrujo/jQuery-Timelinr). Enter `[timeline:{#divID}]` in the body. 
 
 Assumptions, gotchas, and requirements
 -----------
@@ -17,7 +17,7 @@ Assumptions, gotchas, and requirements
 
 Standing on big sholders
 ------------------------
-Initial inspriation for this project came from an attempt to bottle up the wonderful work of jQuery.timelinr*
+Initial inspriation for this project came from an attempt to bottle up the wonderful work of jQuery.timelinr (https://github.com/juanbrujo/jQuery-Timelinr)
 project. I ended up rewriting the core Javascript file to fit my particular situation but the expected HTML format and slightly modified CSS file live on. 
 
 
@@ -27,4 +27,3 @@ Absolutely none.
 
 
 
-* jQuery-Timlnr - https://github.com/juanbrujo/jQuery-Timelinr
